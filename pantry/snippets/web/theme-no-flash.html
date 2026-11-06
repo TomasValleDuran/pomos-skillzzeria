@@ -1,0 +1,25 @@
+<!-- 🌗 Put this as the FIRST thing in <head>. Applies the saved/OS theme before paint, so dark-mode users
+     never see a white flash. Pairs with `.dark` class tokens (palette.py --format css|tailwind).
+     Toggle elsewhere with: setTheme('dark' | 'light' | 'system') -->
+<script>
+  (function () {
+    var KEY = 'theme';
+    function apply(pref) {
+      var dark = pref === 'dark' || (pref !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      var root = document.documentElement;
+      root.classList.toggle('dark', dark);
+      root.style.colorScheme = dark ? 'dark' : 'light';
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = getComputedStyle(root).getPropertyValue('--color-bg').trim() || (dark ? '#0b0a0f' : '#ffffff');
+    }
+    var pref = 'system';
+    try { pref = localStorage.getItem(KEY) || 'system'; } catch (e) {}
+    apply(pref);
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      var p = 'system'; try { p = localStorage.getItem(KEY) || 'system'; } catch (e) {}
+      if (p === 'system') apply('system');
+    });
+    window.setTheme = function (p) { try { localStorage.setItem(KEY, p); } catch (e) {} apply(p); };
+  })();
+</script>
+<meta name="theme-color" content="#ffffff" />

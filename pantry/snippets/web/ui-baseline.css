@@ -1,0 +1,71 @@
+/* 🍕 UI baseline — the small global rules every web project should start with.
+   Pairs with tokens from design-system-builder / color-theory (expects --color-* vars, but has fallbacks). */
+
+:root {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;                          /* not 100vh: mobile browser chrome */
+  background: var(--color-bg, Canvas);
+  color: var(--color-text, CanvasText);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; }
+p, li, figcaption { text-wrap: pretty; overflow-wrap: break-word; }
+.tabular, td, time { font-variant-numeric: tabular-nums; }
+
+/* Focus: visible for keyboard, invisible for mouse clicks */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* Anchored headings don't hide under sticky headers */
+:target, [id] { scroll-margin-top: var(--header-height, 4rem); }
+
+/* Touch polish */
+button, a, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+dialog, [role="dialog"] { overscroll-behavior: contain; }
+
+/* Hover only where hover exists (no sticky hover on phones) */
+@media (hover: none) {
+  .hover-only { display: none; }
+}
+
+/* Respect reduced motion: keep fades, drop movement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe areas for full-bleed layouts (needs <meta name="viewport" content="..., viewport-fit=cover">) */
+.safe-x { padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right)); }
+.safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+/* Visually hidden but available to screen readers */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "pomos-skillzzeria",
+  "description": "Pomo's Skillzzeria — homemade skills, agents and commands for Claude Code, served hot.",
+  "owner": {
+    "name": "pomo"
+  },
+  "plugins": [
+    {
+      "name": "skillzzeria",
+      "description": "The house menu: UI/UX playbook, UI stack advisor, design-system builder, color theory (with an OKLCH palette tool), a UI critic agent and a /ship-check command.",
+      "version": "0.1.0",
+      "author": { "name": "pomo" },
+      "category": "design",
+      "source": "./plugins/skillzzeria"
+    }
+  ]
+}

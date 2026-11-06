@@ -1,0 +1,50 @@
+# 🤖 Claude reviews every PR — and has the Skillzzeria menu loaded (UI playbook, design system, color…).
+# Copy to .github/workflows/claude-pr-review.yml.
+# Secret needed: CLAUDE_CODE_OAUTH_TOKEN (run `claude setup-token` locally) — or swap for anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}.
+# The Claude GitHub app must be installed on the repo (run `/install-github-app` in Claude Code).
+name: Claude PR review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          use_sticky_comment: true
+          plugin_marketplaces: |
+            https://github.com/TomasValleDuran/pomos-skillzzeria.git
+          plugins: |
+            skillzzeria@pomos-skillzzeria
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review this pull request. Focus on, in order:
+            1. Correctness bugs and regressions (with a concrete failing scenario for each).
+            2. Security issues (secrets, injection, authz).
+            3. If UI files changed: use the ui-ux-playbook skill's pre-ship checklist and the
+               project's DESIGN.md (accessibility, missing states, token usage, motion, copy).
+            4. Missing or weak tests for the changed behavior.
+
+            Be specific and terse. Use inline comments for line-level issues and one summary
+            comment with a verdict. Skip style nits a formatter would catch. If the PR looks good, say so briefly.
