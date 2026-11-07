@@ -40,6 +40,7 @@ Pick one method per machine, or every skill shows up twice.
 | `ui-ux-playbook` | 🍕 **Margherita della casa.** The place to start for any UI/UX work: the workflow, the standards (WCAG 2.2, HIG, Material 3, Core Web Vitals), a pre-ship checklist, and which skill to use for what |
 | `ui-stack-advisor` | 🍕 **Quattro Stagioni.** Component, animation and widget libraries for web (React/Vue/Svelte/Angular) and mobile (RN/Expo, Flutter, SwiftUI, Compose), plus how to pick one |
 | `design-system-builder` | 🍕 **Capricciosa.** Tokens, the W3C DTCG format, theming, multi-platform outputs, component conventions, and a DESIGN.md template |
+| `promo-video-3d` | 🍕 **Calzone.** A 30–45 s 3D promo/intro video in code: Remotion + three.js with bloom, the real app on a 3D phone, a soundtrack synthesized on the beat grid, QR call-to-action. Starter kit, render checks, lessons learned |
 | `color-theory` | 🍕 **Diavola.** Color theory plus `palette.py`: one hex → full OKLCH light/dark system with every contrast pair checked (WCAG + APCA) and a color-blindness check |
 
 ### 👨‍🍳 Chefs (agents): workers with their own context

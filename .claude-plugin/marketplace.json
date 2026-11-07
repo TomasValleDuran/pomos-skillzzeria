@@ -8,8 +8,8 @@
   "plugins": [
     {
       "name": "skillzzeria",
-      "description": "The house menu: UI/UX playbook, UI stack advisor, design-system builder, color theory (with an OKLCH palette tool), a UI critic agent and a /ship-check command.",
-      "version": "0.1.0",
+      "description": "The house menu: UI/UX playbook, UI stack advisor, design-system builder, color theory (with an OKLCH palette tool), 3D promo videos in code (Remotion + three.js), a UI critic agent and a /ship-check command.",
+      "version": "0.2.0",
       "author": { "name": "pomo" },
       "category": "design",
       "source": "./plugins/skillzzeria"

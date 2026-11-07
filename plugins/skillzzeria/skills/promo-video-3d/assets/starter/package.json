@@ -1,0 +1,31 @@
+{
+  "name": "promo-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.tsx",
+    "still": "remotion still src/index.tsx Main out/still.png --gl=angle --props={\"audio\":null}",
+    "render": "remotion render src/index.tsx Main out/video.mp4 --codec h264 --crf 17 --audio-codec aac --audio-bitrate 256k --gl=angle"
+  },
+  "dependencies": {
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.2",
+    "@react-three/postprocessing": "3.2.2",
+    "@remotion/cli": "4.0.541",
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "postprocessing": "6.39.6",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "remotion": "4.0.541",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.0.0",
+    "@types/three": "0.187.0",
+    "playwright": "^1.65.0",
+    "typescript": "^5.6.0"
+  }
+}
