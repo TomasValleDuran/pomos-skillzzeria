@@ -13,6 +13,20 @@
 
 Shorter (30 s): drop the World scene and use 3 product screens.
 
+## Narrated 40 s ad (1080p60, ElevenLabs voice, "Apple-style")
+Script (14 phrases): *Sábado, 19 h. · Faltan dos. · ¿Cómo se encuentran? · Partidos cerca tuyo. · Encontrá. · Sumate. · Armá el tuyo. · Descubrí. · Todo en una app. · Y vienen más. · Elegí el tuyo. · SportMatch. · Dejá de buscar jugadores. · Empezá a jugar.*
+
+| Seconds | Scene | What's on screen |
+|---|---|---|
+| 0–5.9 | **Hook** | The logo's two halves as 3D prisms, apart and rotating among shards, with hook text between them; they attract and **collide** (5.9 s) into the logo: flare, anamorphic streak, and a wave that lights up the city |
+| 6–11.6 | **City** | One continuous camera descends over a procedural neon version of the real town; volumetric beams rise at each match; real map pins projected onto 3D; the camera dives into the main beam (the "2 spots left" match) and a light fill covers the screen |
+| 10.6–24.8 | **Product** | A phone emerges from the light. Four rebuilt screens (map → swipe → create wizard → profile) with real taps, toasts and transitions; one action word per screen on the left ("Encontrá." "Sumate." "Armá el tuyo." "Descubrí.", numbered 01–04); then "Todo en una app": phone centred, screens fan out in 3D; phone falls out with motion blur |
+| 23.8–29.2 | **Breadth** | A rain of balls of every sport (physics, reflections, depth of field), rack focus onto the hero ball ("Y vienen más." "Elegí el tuyo.") |
+| 28.5 | **The click** | Half a second of silence, then a tap on the hero ball → ripple, flash, music hit |
+| 28.5–40 | **Brand + CTA** | The app's splash animation, big: halves fly in, flare, wordmark reveal, particles; the logo compacts upward; "Dejá de buscar jugadores." → "Empezá a jugar."; QR + URL + "ESCANEÁ Y SUMATE" |
+
+The voice carries the story, so the visuals can be more abstract (prisms, city of light) than in a music-only cut, where the slams have to carry it.
+
 ## Concept patterns
 - **Brand mark as characters**: logo pieces = the two sides of the marketplace (player ↔ match, buyer ↔ seller, mentor ↔ student). Their meeting is the product. Strongest pattern found.
 - **Reuse the product's own motion**: if the app has a splash animation and sound, recreate it big for the reveal — continuity between video and app when the demo starts.
@@ -26,10 +40,12 @@ Shorter (30 s): drop the World scene and use 3 product screens.
 
 ## What did not work
 - **Flat 2D kinetic type + phone mockup**: competent but "looks like a fancy PowerPoint".
-- **TTS voice-over**: even a good local model (Piper `es_AR`) was "not easy to understand" and cheapened it.
+- **Cheap TTS voice-over**: a local model (Piper `es_AR`) was "not easy to understand" and cheapened it. An ElevenLabs native voice with direction tags did work (see `audio.md`).
 - Cropped screenshot pop-outs (blurry, background corners).
 
 ## Feedback loop
 - Show a contact sheet early (6–12 frames) before any full render; full renders only for the user's review.
 - Ask the user for **timestamps + screenshots** of what bothers them; they spot real defects (horizon cuts, blurry pop-outs, bevels) that are easy to miss in thumbnails.
 - Version every render (`-v1`, `-v2`…), never overwrite the file the user is watching.
+- Work in batches and leave recoverable state (a handoff `.md`, the timeline table, render commands): long sessions get cut by usage limits, and another agent may pick it up.
+- Ask early whether the user has an editor (DaVinci, Premiere). If not, deliver only the finished master and make every change yourself; don't ship layer/stem packages they can't use.
